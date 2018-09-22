@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .browser{
+            position: absolute;
+            right: 60px;
+            top: 0px;
+	text-align: center;
+        }
+	#pOutput1{
+	font-size: 50px;
+	}
+	#pOutput2{
+	font-size: 50px;	}
+	
+    </style>
+ <script>
+function Time() {
+var num = 0;
+function getTime() { 
+	num = 0;
+    var requester = new XMLHttpRequest();
+    requester.onreadystatechange = function() {
+        if ( requester.readyState == 4 && requester.status == 200) {
+            document.getElementById('pOutput1').innerHTML = requester.responseText;
+        }
+    }
+    requester.open("GET", "assignment9.php?num="+num, true);
+    requester.send();
+         setTimeout(getTime, 500);
+}
+
+function getBrowser() { 
+	num = 1;
+    var requester = new XMLHttpRequest();
+    requester.onreadystatechange = function() {
+        if ( requester.readyState == 4 && requester.status == 200) {
+            document.getElementById('pOutput2').innerHTML = requester.responseText;
+        }
+    }
+    requester.open("GET", "assignment9.php?num="+num, true);
+    requester.send();
+         setTimeout(getBrowser, 500);
+}
+getTime();
+getBrowser();
+}
+</script> 
+</head>
+    
+
+<body onload="Time();" >
+<div class= "server" >
+<h1> Server Time </h1>
+	<h3> The Time is... </h3>
+    <p id="pOutput1"> The Time is: </p>
+    </div>
+    <div class= "browser" >
+    <h1> Browser Time</h1>
+<h3> The Time is.. </h3>
+     <p id="pOutput2"> The Time is: </p>
+    </div>
+    
+</body>
+</html>

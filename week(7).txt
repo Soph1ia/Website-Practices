@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title> week6 assignment </title>
+    <style> 
+        table {
+            position: relative; 
+            background-color: #B3DEC1;
+            border-radius: 20px;
+            padding: 1px;
+            box-shadow: 20px 20px 50px lightgrey;
+            
+        }
+        td{
+            padding: 5px 5px 5px 20px;
+            font-size: 10px;
+        }
+        .header{
+            padding: 10px 20px 10px;
+            color: #E5FCF5;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        .first{
+            border: solid 1px #E5FCF5;
+            background-color: #E5FCF5;
+            color: #B3DEC1;
+            font-weight: bold;
+            padding-right: 3px;
+            border-radius: 10px;
+        }
+        .num:hover {
+            background-color: #E5FCF5;
+            border-radius: 10px;
+            color: #B3DEC1;
+        }
+        </style>
+    <script>
+        
+        var days=0;
+        var noDays=[];
+        var begin=0;
+        var space = " ";
+        var k=0;
+        var valid = false;
+        var date = new Date();
+        var today = date.getDate();
+        console.log(today);
+        
+        
+        function loaded() { 
+            // inputs values for days in month and number the 1st starts on.
+            while ( valid != true ){
+        days= prompt("enter number of days in month");
+        days= parseInt(days);
+                
+                if (isNaN(days) || days >31) {
+                    alert("value not a number within range of 28-31.. try again..");
+                }
+                else {
+                    valid = true;
+                }
+            }
+            
+            while ( valid != false) {
+        begin= prompt("Enter when the day begins (0-6)");
+        begin= parseInt(begin);
+        
+            if (isNaN(begin) || begin >6){
+                alert("please enter value from 0-6");
+                valid = true;
+            }
+            else {
+                valid = false;
+            }
+            }
+            day(); 
+            createCalender();// calls functions
+            
+        // fills array of day. from 1 - no. of days in month.
+        function day() {
+            for ( var i=1; i<=41; i++) {
+                if( i<= days) {
+                noDays[i-1]= i;
+                
+                }
+                else {
+                    noDays[i-1] = "&nbsp;";
+                }
+            }
+                
+            }
+         
+            
+        // creates calender table..
+        function createCalender() {
+            var html = "<table>";
+            html += "<tr class='row1'> <td class ='header'> Sun</td> <td class ='header'> Mon</td> <td class ='header'> Tue</td> <td class ='header'> Wed</td> <td class ='header'> Thur</td><td class ='header'> Fri</td> <td class ='header'> Sat</td> </tr> <tr>";
+            
+            
+            //prints off all data
+            for (var i =0; i < 6; i++) {
+                var j=0;
+                html += "<tr>"
+                while (begin>0) {
+                html += "<td></td>";
+                    begin--;
+                    j++;
+                }
+                while(j<7) {
+                    if ( noDays[k] == today) {
+                        html += "<td class= 'first'>" + noDays[k] + "</td>";
+                    }
+                    else if  ( noDays[k] <= days){
+                    html += "<td class='num'>"+ noDays[k]+ "</td>";
+                    }
+                    else {
+                        html += "<td>"+ noDays[k]+ "</td>";
+                    }
+                    k++;
+                    j++;
+                }
+            }
+                html += "</tr>";
+            
+            html += "</table>";
+            document.getElementById('pOutput').innerHTML = html;
+        }
+        }
+        
+        </script>
+    </head>
+    <body onload ="loaded();">
+        <div id="pOutput"> </div>
+    </body>
+</html>

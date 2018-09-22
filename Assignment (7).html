@@ -1,0 +1,204 @@
+<!DOCTYPE html> 
+<html>
+<head><title> Assignment (7)</title>
+    <style>
+        .cap {
+            font-size: 25px;
+            font-weight: bold;
+            color: #d81e5b;
+        }
+        table {
+            position: relative; 
+            background-color: black;
+            border-radius: 20px;
+            padding: 1px;
+            box-shadow: 20px 20px 50px lightgrey;
+            
+        }
+        td{
+            padding: 5px 5px 5px 20px;
+            font-size: 12px;
+            color: #d81e5b;
+            font-weight: bold;
+        }
+        .header{
+            padding: 10px 20px 10px;
+            color: #d81e5b;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        .first {
+            border: solid 1px #d81e5b;
+            background-color: #d81e5b;
+            color: black;
+            font-weight: bold;
+            padding-right: 3px;
+            border-radius: 10px;
+        }
+        .num:hover {
+            background-color: #d81e5b;
+            font-weight: bold;
+            border-radius: 10px;
+            color: black;
+        }
+    </style>
+<script>
+     function cal() {
+            
+        var day = no_of_days();
+        var noDays = [];
+        var year = document.getElementById("txtYear").value;
+        var month = document.getElementById("value").selectedIndex;
+        var nameMonth;
+        var daynumber = 1;
+        var begin = firstDay();
+        var date = new Date();
+        var today = date.getDate();
+        console.log(today);
+        var i = 0, j = 0, k = 0;
+                   
+    checkYear();
+    monthselect();
+    firstDay();
+    days();
+    createCalender();
+
+
+    // Leap Years... WORKS
+function is_leap(year) {
+    
+  if (((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0)) {
+      return 1;
+  } 
+    else {
+        return 0;
+    }
+}
+    
+    //PRINTS IF LEAP YEAR.. WORKS
+function checkYear() {
+var txt = document.getElementById("txtYear").value;
+var year = parseInt(txt);
+if (isNaN(year))
+alert(txt + " is not a number!");
+else if (is_leap(year) === 1)
+alert(year + " is a leap year");
+else
+alert(year + " is not a leap year");
+}
+    
+    //ALERTS WHICH MONTH SELECTED.... WORKS
+function monthselect() {
+        var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July','August', 'September','October','November','December'];
+        alert( months[month] + ' Is the month you selected');
+        nameMonth = months[month];
+    } 
+    
+// FINDS THE BEGIN (0-6) of MONTH.. WORKS
+function no_of_days(year, month) {
+        if ( month == 8 || month == 3 || month == 5 || month == 10) {
+            day = 30;
+            return 30; }
+        else if (month != 1) {
+            day = 31;
+            return 31;
+        }
+        else {
+            day = 28 + is_leap(year);
+            return (28 + is_leap(year));
+        }
+    }
+    
+function new_years_day(year)  {  
+        for (var i = 1900; i < year; i++) daynumber += 365 + is_leap(i); 
+        return (daynumber % 7); 
+    }
+
+function firstDay(daynumber) {
+       daynumber = new_years_day(year); 
+       for (var i = 0; i < month; i++) daynumber += no_of_days(year, i);   
+        daynumber %= 7; 
+        return daynumber;
+        
+    }
+              
+        
+        
+// CREATES THE CALENDER HERE...
+            
+    // 1. Fills array day, with number of days.... WORKS
+function days() {
+            for ( var i=1; i<=45; i++) {
+                if( i <= day) {
+                noDays[i-1] = i;
+                
+                }
+                else {
+                     noDays[i-1] = "&nbsp;";
+                }
+            } 
+            }
+            
+function createCalender() {
+            var html = "<table>";
+            html += "<caption class='cap' >" + nameMonth + ' ' + year + "</caption>";
+            html += "<tr class='row1'> <td class ='header'> Sun</td> <td class ='header'> Mon</td> <td class ='header'> Tue</td> <td class ='header'> Wed</td> <td class ='header'> Thur</td><td class ='header'> Fri</td> <td class ='header'> Sat</td> </tr> <tr>";
+            
+            
+            //prints off all data
+            for (var i = 0; i < 6; i++) {
+                var j = 0;
+                html += "<tr>"
+                while (begin > 0) {
+                html += "<td></td>";
+                    begin--;
+                    j++;
+                }
+                while(j < 7) {
+                    if ( noDays[k] == today) {
+                        html += "<td class= 'first'>" + noDays[k] + "</td>";
+                    }
+                    else if  ( noDays[k] <= day){
+                    html += "<td class='num'>"+ noDays[k]+ "</td>";
+                    }
+                    else {
+                        html += "<td>"+ noDays[k]+ "</td>";
+                    }
+                    k++;
+                    j++;
+                }
+            }
+                html += "</tr>";
+            
+            html += "</table>";
+            document.getElementById('pOutput').innerHTML = html;
+        }
+            
+       
+        }
+    </script>
+</head>
+<body> <center>
+        <fieldset> 
+<input type = "text" id = "txtYear" >
+    <br><br>
+        Select A Month... <br>
+        <select  id = "value" >
+            <option  value ="1" > January</option>
+            <option value ="2"> February</option>
+            <option  value ="3"> March</option>   
+            <option  value ="4"> April</option>   
+            <option  value ="5"> May</option>     
+            <option  value ="6"> June</option>     
+            <option  value ="7"> July</option>
+            <option value ="8"> August</option>
+            <option  value ="9"> September</option>
+            <option  value ="10"> October</option>
+            <option  value ="11"> November</option>
+            <option  value ="12"> December</option>     
+                </select> <br><br>
+            <button onclick="cal();"> Click Here</button>
+    </fieldset></center> <center>
+    <div id="pOutput"> </div></center>
+</body>
+</html>

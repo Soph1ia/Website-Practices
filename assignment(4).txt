@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head> <title> Week 5</title>
+    <script>
+        
+        var count =0;
+        var count2 =0;
+        var count3 =0;
+        var count4 =0;
+    function onClick() {
+        count++;
+        var p = document.getElementById('out');
+        p.innerHTML = "Click is now: " + count;
+        document.getElementById('img').src='https://data.whicdn.com/images/63773419/original.gif';
+    } 
+        function onClick2() {
+            count2++;
+            var p = document.getElementById('out2');
+            p.innerHTML = "Double click is now: " + count2;
+            
+        }
+        function onClick3() {
+            count3++;
+            var p = document.getElementById('out3');
+            p.innerHTML = "Mouse Over is now: " + count3;
+        }
+        function onClick4() {
+            count4++;
+            var p = document.getElementById('out4');
+            p.innerHTML = "Mouse Out is now: " + count4;
+        }
+    </script>
+    </head>
+<body>
+<img id="img"
+onclick="onClick();" 
+ondblclick="onClick2();"
+onmouseover="onClick3();"
+onmouseout="onClick4();"     src="https://i.imgur.com/UZvUXB3.gif" width ="400">
+    <p id="out">
+    Result Will Be Shown Here...</p>
+    <p id="out2"> Result for double click will be shown here</p>
+    <p id="out3"> Result for mouse over will be shown here</p>
+    <p id="out4"> Result for mouse out will be shown here</p>
+    </body>
+</html>

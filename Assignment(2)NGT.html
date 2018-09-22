@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head> 
+    <title> Week3 Assignment</title>
+    <style>
+    #txtInput {
+        width: 80%;
+        height: 10em;
+        display: block;
+        margin: auto;
+        border-radius: 10px;
+        resize:none;
+        } 
+    p {
+        text-align: center;
+        color: grey;
+        }
+    </style>
+    <script>
+        function Output() {
+            var txt = document.getElementById("txtInput").value;
+            var numcount = txt.length;
+            var wordcount = 0;
+            
+            for (i = 0; i<numcount; i++) {
+                var letter = txt.substr(i,1);
+                if ( letter == " ") {
+                    wordcount++;
+                }
+            }
+        document.getElementById("Output").innerHTML = numcount + " number of characters " + "<br>" + wordcount +" Number of words";
+        }
+    </script>
+    </head>
+<body>
+    <textarea id='txtInput' onkeyup="Output();" placeholder = "Type text in here..."></textarea>
+    <p id='Output'> Output will be shown here</p>
+    </body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+        .button {
+            background: transparent; 
+            border: none;
+            font-size: 20px;
+            }
+        </style>
+        <script>
+        var counter=0;
+            function button1() {
+                counter++;
+                    if (counter === 1) {
+                        document.getElementById('myImage').src='http://www2.it.nuigalway.ie/~sredfern/ct1113/images/banner-image-2.png';
+                    }
+                if (counter === 2) {
+                        document.getElementById('myImage').src='http://www2.it.nuigalway.ie/~sredfern/ct1113/images/banner-image-3.png';
+                    }
+                if (counter === 3) {
+                        document.getElementById('myImage').src='http://www2.it.nuigalway.ie/~sredfern/ct1113/images/banner-image-4.png';
+                    }
+                if (counter === 4) {
+                        document.getElementById('myImage').src='http://www2.it.nuigalway.ie/~sredfern/ct1113/images/banner-image-5.png';
+                    }
+                if (counter === 5) {
+                        document.getElementById('myImage').src='http://www2.it.nuigalway.ie/~sredfern/ct1113/images/banner-image-6.png';
+                    }
+                if (counter === 6) {
+                        document.getElementById('myImage').src='http://www2.it.nuigalway.ie/~sredfern/ct1113/images/banner-image-1.png';
+                        counter = counter - 6;
+                    }
+            }
+        </script>
+    </head>
+<body>
+
+<button onclick="button1();" class="button">
+
+<img id="myImage" src="http://www2.it.nuigalway.ie/~sredfern/ct1113/images/banner-image-1.png"> <br> Click The Image</button>
+</body>
+</html>

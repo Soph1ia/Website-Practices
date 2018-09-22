@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head> <title>Week 6 </title>
+        <style> 
+            p{ 
+                word-break: break-all;
+            }
+        </style>
+<script>
+    
+    function printing() {
+    var num=[]; 
+    var i=0;
+    var sum =0;
+    var avrg=0;
+    var max=0;
+    var min =0;
+    
+    /*populating array*/
+    for (i=0; i<100; i++){
+         num[i] = Math.floor(Math.random ()*1000);
+    }
+    
+    /*Sum of Numbers loop*/
+    for(i=0; i<100; i++) {
+        sum = sum + num[i];
+    } 
+    /*Gets Average*/
+    avrg= sum/1000;
+    /*checks for largest*/
+    for (i=0; i<100; i++) {
+        if (num[i] >max ){
+            max = num[i];
+        }
+    }
+    /* checks for smallest*/
+    for (i=0; i<100; i++){
+        if (num[i] <1000){
+            min =num[i];
+        }
+    }
+        document.getElementById('display').innerHTML = "Sum of Number = " + sum + "<br>"
+         + "Highest Number = " +max + "<br>" 
+         + "Lowest Number = " + min + "<br>" 
+         + "Average = " + avrg + "<br>" 
+         +"The list of Numbers = " + num;
+        }
+    </script>
+        </head>
+<body>
+    <button onclick="printing();"> Click Here For Values</button> 
+    <p id="display"> Values Should appear here..</p>
+    
+    </body>
+</html>
